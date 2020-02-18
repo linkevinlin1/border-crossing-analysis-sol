@@ -18,10 +18,11 @@ By Kevin Y. Lin (linkevinlin1@gmail.com)
 
 ## What the Code Does Not Do
 * Typos are not tolerated
-* Not accept different time stamp format.
+* Not accepting different time stamp format.
+* Does not handle missing column entries
 * Can be slow due to all the data tolerance features
 
 ## General Work Flow
-The code reads the input data backwards from the end of file one line at a time. The relevant data are stored in an order dictionary for easy access. Once the entries within the same month are collected, the dictionary is then sorted by the labels in ascending order. The processed data are written in a temp file. After all the input data are processed, the temp file will be read from the end again and write to the report.csv. Therefore, the date and the labels will be in a descending order as required. 
+The code reads the input data backwards from the end of file one line at a time. The relevant data are stored in an order dictionary for easy access. Once the entries within the same month are collected, the dictionary is then sorted by the labels in ascending order. The processed data are written in a temp file. After all the input data are processed, the temp file will be read from the end again and write to the report.csv. Therefore, the date and the labels will be in a descending order as required. The temp file will be deleted at the end of execution.
 
 
