@@ -1,0 +1,97 @@
+import os
+
+Border_row_num=0
+Date_row_num=0
+Meausre_row_num=0
+Value_row_num=0
+
+##class border_stats:
+#	def __init__(self)
+#		self.list=[]
+#
+#	def add_entry(self,entry)
+#		global Border_row_num
+#		global Measure_row_num
+#		global Value_row_num
+#
+#		border_temp=entry(Border_row_num)
+#		measure_temp=entry(Measure_row_num)
+#		value_temp=entry(Value_row_num)
+#		if len(self.list)==0:
+#			self.list.append({'Border':border_temp})
+#			self.list[0][measure_temp:(value_temp,0,0)]
+#		else:
+#			border_flag=1
+#			for item in self.list:
+#				if item['Border'] = border_temp:
+#					if measure_temp in d:
+#						item[measure_temp]=
+#					else:
+#						item[measure_temp]=value_temp
+#					border_flag=0
+#			if border_flag==1:
+#				self.list.append({'Border':border_temp})
+#				self.list[0][measure_temp:(value_temp,0)]
+
+
+def column_init(column_list):
+	i=0
+	for item in column_list:
+		#print(item)
+		if item == 'Border':
+			global Border_row_num
+			Border_row_num=i
+			print('Border row number = %d' % i)
+		elif item == 'Date':
+			global Date_row_num
+			Date_row_num=i 
+			print('Date row number = %d' % i)  
+		elif item == 'Measure':
+			global Measure_row_num
+			Measure_row_num=i 
+			print('Measure row number = %d' % i)  
+		elif item == 'Value':
+			global Value_row_num
+			Value_row_num=i 
+			print('Value row number = %d' % i)  
+		i=i+1
+
+def back():
+
+	border_list_temp=[]
+	value_list_temp=[]
+	measure_list_temp=[]
+
+	with open('../input/Border_Crossing_Entry_Data_long1.csv', 'rb') as f:
+		first_line=f.readline().decode()
+		first_line=first_line.strip('\n')
+		first_list=first_line.split(',')
+		print(first_list)
+		column_init(first_list)
+
+		firstline_end= f.tell()
+		print(f.tell())
+		f.seek(-2, os.SEEK_END) 
+		Current_date='0'
+		Past_date='0'
+		while(f.tell()>firstline_end):
+			while f.read(1) != b'\n':
+				f.seek(-2,1) 
+			current_line_num=f.tell()
+			last_line = f.readline().decode()
+			last_line=last_line.strip('\n')
+			current_list = last_line.split(',')
+			f.seek(current_line_num-4,0)
+			global Date_row_num
+			Current_date=current_list[Date_row_num]
+			if Current_date != Past_date and Past_date != '0':  #fix jumping a line
+				break
+			Past_date=Current_date
+			print(current_list)
+			border_list_temp.append(current_list[Border_row_num])
+			value_list_temp.append(current_list[Value_row_num])
+			measure_list_temp.append(current_list[Measure_row_num])
+			#print(border_list_temp)
+
+#main()
+back()
