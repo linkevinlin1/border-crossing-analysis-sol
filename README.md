@@ -5,9 +5,9 @@ By Kevin Y. Lin (linkevinlin1@gmail.com)
 * Organize the data in the desired format
 * Allow custom Border name (The origin country name can also be changed in the code.)
 * Allow custom Measure name
-* Several implementations for input data tolerance
+* Several implementations for input data quality tolerance
 
-## Input Data Tolerance
+## Input Data Quality Tolerance
 * Allow input columns to have a different order
 * Auto-detect delimiters: comma, semi-colon, tab, Pipes (|) and Carets (^)
 * Tolerant on newline symbol in both Windows (\r\n) and Unix (\n)
@@ -20,9 +20,9 @@ By Kevin Y. Lin (linkevinlin1@gmail.com)
 * Typos are not tolerated
 * Not accepting different time stamp format.
 * Does not handle missing column entries
-* Can be slow due to all the data tolerance features
+* Can be slow due to all the quality tolerance features
 
 ## General Work Flow
-The code reads the input data backwards from the end of file one line at a time. The relevant data are stored in an order dictionary for easy access. Once the entries within the same month are collected, the dictionary is then sorted by the labels in ascending order. The processed data are written in a temp file. After all the input data are processed, the temp file will be read from the end again and write to the report.csv. Therefore, the date and the labels will be in a descending order as required. The temp file will be deleted at the end of execution.
+The code reads the input data backwards from the end of file one line at a time. The relevant data are stored in an ordered dictionary for easy access. Once the entries within the same month are collected, the dictionary is then sorted by the values in ascending order. The processed data are written in a temp file. After all the input data are processed, the temp file will be read from the end again and write to the report.csv. Therefore, the date and the labels will be in a descending order as required. The temp file will be deleted at the end of execution.
 
 
