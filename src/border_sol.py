@@ -12,7 +12,7 @@
 #The temp file is again read from the end and output to the report.csv with correct descending order.
 #
 #For more info, please refer to readme
-#
+##
 #Kevin Y. Lin 20200218 linkevinlin1@gmail.com
 
 import os
